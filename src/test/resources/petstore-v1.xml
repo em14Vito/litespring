@@ -6,5 +6,5 @@
        http://www.springframework.org/schema/beans ">
     <bean id="petStore" class="org.litespring.service.v1.PetStoreService"></bean>
 
-
+    <bean id="invalid" class="xx.xxxx"></bean>
 </beans>
