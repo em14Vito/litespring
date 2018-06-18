@@ -1,6 +1,10 @@
-package org.litespring.beans;
+package org.litespring.beans.factory;
+
+import org.litespring.bean.BeanDefinition;
 
 /**
+ * Cathay-ins.com.cn Inc.
+ * Copyright (c) 2014-2018 All Rights Reserved.
  * <p>
  * [Class description.  The first sentence should be a meaningful summary of the class since it
  * will be displayed as the class summary on the Javadoc package page.]
@@ -9,12 +13,15 @@ package org.litespring.beans;
  * about desired improvements, etc.]
  *
  * @author Denny
- * @version 1.0.0 14/06/2018 12:23 AM
+ * @version 1.0.0 14/06/2018 12:21 AM
  * @see [String]
  * @see {URL}
  * @see [Class name#method name]
  **/
 
-public interface BeanDefinition {
-	String getBeanClassName();
+public interface BeanFactory {
+
+	BeanDefinition getBeanDefinition(String beanId);
+
+	Object getBean(String petStore);
 }

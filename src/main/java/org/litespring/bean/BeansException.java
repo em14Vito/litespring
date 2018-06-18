@@ -1,4 +1,4 @@
-package org.litespring.beans;
+package org.litespring.bean;
 
 /**
  * [Class description.  The first sentence should be a meaningful summary of the class since it

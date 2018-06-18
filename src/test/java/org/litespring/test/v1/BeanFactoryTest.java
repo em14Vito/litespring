@@ -2,12 +2,12 @@ package org.litespring.test.v1;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.Assert.*;
-import org.litespring.bean.factory.BeanCreateException;
-import org.litespring.bean.factory.BeanDefinitionStoreException;
-import org.litespring.bean.factory.BeanFactory;
-import org.litespring.bean.factory.support.DefaultBeanFactory;
-import org.litespring.beans.BeanDefinition;
+import org.litespring.beans.factory.BeanCreateException;
+import org.litespring.beans.factory.BeanDefinitionStoreException;
+import org.litespring.beans.factory.BeanFactory;
+import org.litespring.beans.factory.support.DefaultBeanFactory;
+import org.litespring.beans.factory.xml.XmlBeanDefinitionReader;
+import org.litespring.bean.BeanDefinition;
 import org.litespring.service.v1.PetStoreService;
 
 /**
@@ -29,7 +29,10 @@ public class BeanFactoryTest {
 
 	@Test
 	public void testGetBean(){
-		BeanFactory factory = new DefaultBeanFactory("petstore-v1.xml");
+		DefaultBeanFactory factory = new DefaultBeanFactory();
+		XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(factory);
+		reader.loadBeanDefinition("petstore-v1.xml");
+
 		BeanDefinition bd = factory.getBeanDefinition("petStore");
 
 		Assert.assertEquals("org.litespring.service.v1.PetStoreService",bd.getBeanClassName());
@@ -40,8 +43,10 @@ public class BeanFactoryTest {
 
 	@Test
 	public void testInvalidBean(){
+		DefaultBeanFactory factory = new DefaultBeanFactory();
+		XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(factory);
+		reader.loadBeanDefinition("petstore-v1.xml");
 
-		BeanFactory factory = new DefaultBeanFactory("petstore-v1.xml");
 		try{
 			factory.getBean( "invalid");
 		} catch ( BeanCreateException e) {
@@ -51,9 +56,12 @@ public class BeanFactoryTest {
 	}
 
 	@Test
-	public void testInvalidXML(){ 
+	public void testInvalidXML(){
 		try{
-			new DefaultBeanFactory("invalid.xml");
+			DefaultBeanFactory factory = new DefaultBeanFactory();
+			XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(factory);
+			reader.loadBeanDefinition("invalid-v1.xml");
+
 		} catch ( BeanDefinitionStoreException e) {
 			return;
 		}

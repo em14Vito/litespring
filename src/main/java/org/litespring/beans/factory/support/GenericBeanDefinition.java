@@ -1,6 +1,6 @@
-package org.litespring.bean.factory.support;
+package org.litespring.beans.factory.support;
 
-import org.litespring.beans.BeanDefinition;
+import org.litespring.bean.BeanDefinition;
 
 /**
  * [Class description.  The first sentence should be a meaningful summary of the class since it
