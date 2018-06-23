@@ -1,9 +1,6 @@
-package org.litespring.beans.factory;
+package org.litespring.beans;
 
 /**
- * Cathay-ins.com.cn Inc.
- * Copyright (c) 2014-2018 All Rights Reserved.
- * <p>
  * [Class description.  The first sentence should be a meaningful summary of the class since it
  * will be displayed as the class summary on the Javadoc package page.]
  * <p>
@@ -11,13 +8,18 @@ package org.litespring.beans.factory;
  * about desired improvements, etc.]
  *
  * @author Denny
- * @version 1.0.0 14/06/2018 12:21 AM
+ * @version 1.0.0 15/06/2018 12:40 AM
  * @see [String]
  * @see {URL}
  * @see [Class name#method name]
  **/
 
-public interface BeanFactory {
+public class BeansException extends RuntimeException{
+	public BeansException(String msg) {
+		super(msg);
+	}
 
-	Object getBean(String petStore);
+	public BeansException(String message, Throwable cause) {
+		super(message, cause);
+	}
 }

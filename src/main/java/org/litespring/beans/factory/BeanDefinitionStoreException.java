@@ -1,6 +1,7 @@
 package org.litespring.beans.factory;
 
-import org.litespring.bean.BeansException;
+
+import org.litespring.beans.BeansException;
 
 /**
  * [Class description.  The first sentence should be a meaningful summary of the class since it

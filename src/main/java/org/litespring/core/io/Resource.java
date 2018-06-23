@@ -1,4 +1,7 @@
-package org.litespring.bean;
+package org.litespring.core.io;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * [Class description.  The first sentence should be a meaningful summary of the class since it
@@ -8,18 +11,15 @@ package org.litespring.bean;
  * about desired improvements, etc.]
  *
  * @author Denny
- * @version 1.0.0 15/06/2018 12:40 AM
+ * @version 1.0.0 19/06/2018 11:11 PM
  * @see [String]
  * @see {URL}
  * @see [Class name#method name]
  **/
 
-public class BeansException extends RuntimeException{
-	public BeansException(String msg) {
-		super(msg);
-	}
+public interface Resource {
 
-	public BeansException(String message, Throwable cause) {
-		super(message, cause);
-	}
+	public InputStream getInputStream() throws IOException;
+	public String getDescription();
+
 }

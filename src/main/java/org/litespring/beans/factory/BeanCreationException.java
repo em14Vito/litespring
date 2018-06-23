@@ -1,6 +1,7 @@
 package org.litespring.beans.factory;
 
-import org.litespring.bean.BeansException;
+
+import org.litespring.beans.BeansException;
 
 /**
  * [Class description.  The first sentence should be a meaningful summary of the class since it
@@ -15,26 +16,30 @@ import org.litespring.bean.BeansException;
  * @see {URL}
  * @see [Class name#method name]
  **/
-
-public class BeanCreateException extends BeansException {
-
-
+public class BeanCreationException extends BeansException {
 	private String beanName;
-	public BeanCreateException(String msg) {
+	public BeanCreationException(String msg) {
 		super(msg);
+
+	}
+	public BeanCreationException(String msg, Throwable cause) {
+		super(msg, cause);
 	}
 
-	public BeanCreateException(String message, Throwable cause) {
-		super(message, cause);
-	}
-
-	public BeanCreateException( String beanName,String message) {
-		super("Error creating bean with name " + beanName + ": " + message);
+	public BeanCreationException(String beanName, String msg) {
+		super("Error creating bean with name '" + beanName + "': " + msg);
 		this.beanName = beanName;
 	}
 
-
-	public String getBeanName() {
-		return beanName;
+	public BeanCreationException(String beanName, String msg, Throwable cause) {
+		this(beanName, msg);
+		initCause(cause);
 	}
+	public String getBeanName(){
+		return this.beanName;
+	}
+
+
+
 }
+

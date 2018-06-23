@@ -1,9 +1,9 @@
-package org.litespring.beans.factory;
+package org.litespring.test.v1;
+
+import org.junit.runner.RunWith;
+import org.junit.runners.Suite;
 
 /**
- * Cathay-ins.com.cn Inc.
- * Copyright (c) 2014-2018 All Rights Reserved.
- * <p>
  * [Class description.  The first sentence should be a meaningful summary of the class since it
  * will be displayed as the class summary on the Javadoc package page.]
  * <p>
@@ -11,13 +11,18 @@ package org.litespring.beans.factory;
  * about desired improvements, etc.]
  *
  * @author Denny
- * @version 1.0.0 14/06/2018 12:21 AM
+ * @version 1.0.0 19/06/2018 11:06 PM
  * @see [String]
  * @see {URL}
  * @see [Class name#method name]
  **/
 
-public interface BeanFactory {
 
-	Object getBean(String petStore);
+@RunWith(Suite.class)
+@Suite.SuiteClasses({
+		ApplicationContextTest.class,
+		BeanFactoryTest.class ,
+		ResourceTest.class})
+public class V1AllTests {
+
 }
