@@ -1,10 +1,10 @@
 package org.litespring.beans.factory.support;
 
 /**
- * [Class description.  The first sentence should be a meaningful summary of the class since it
- * will be displayed as the class summary on the Javadoc package page.]
- * <p>
- * [Other notes, including guaranteed invariants, usage instructions and/or examples, reminders
+ * [Class description. The first sentence should be a meaningful summary of the class since it will
+ * be displayed as the class summary on the Javadoc package page.]
+ *
+ * <p>[Other notes, including guaranteed invariants, usage instructions and/or examples, reminders
  * about desired improvements, etc.]
  *
  * @author Denny
@@ -12,7 +12,7 @@ package org.litespring.beans.factory.support;
  * @see [String]
  * @see {URL}
  * @see [Class name#method name]
- **/
+ */
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -21,26 +21,28 @@ import org.litespring.util.Assert;
 
 public class DefaultSingletonBeanRegistry implements SingletonBeanRegistry {
 
-	private final Map<String, Object> singletonObjects = new ConcurrentHashMap<String, Object>(64);
+  private final Map<String, Object> singletonObjects = new ConcurrentHashMap<String, Object>(64);
 
-	@Override
-	public void registerSingleton(String beanName, Object singletonObject) {
+  public void registerSingleton(String beanName, Object singletonObject) {
 
-		Assert.notNull(beanName, "'beanName' must not be null");
+    Assert.notNull(beanName, "'beanName' must not be null");
 
-		Object oldObject = this.singletonObjects.get(beanName);
-		if (oldObject != null) {
-			throw new IllegalStateException("Could not register object [" + singletonObject +
-					"] under bean name '" + beanName + "': there is already object [" + oldObject + "] bound");
-		}
-		this.singletonObjects.put(beanName, singletonObject);
+    Object oldObject = this.singletonObjects.get(beanName);
+    if (oldObject != null) {
+      throw new IllegalStateException(
+          "Could not register object ["
+              + singletonObject
+              + "] under bean name '"
+              + beanName
+              + "': there is already object ["
+              + oldObject
+              + "] bound");
+    }
+    this.singletonObjects.put(beanName, singletonObject);
+  }
 
-	}
+  public Object getSingleton(String beanName) {
 
-	@Override
-	public Object getSingleton(String beanName) {
-
-		return this.singletonObjects.get(beanName);
-	}
-
+    return this.singletonObjects.get(beanName);
+  }
 }

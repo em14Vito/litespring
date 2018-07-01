@@ -7,10 +7,10 @@ import org.litespring.core.io.Resource;
 import org.litespring.util.ClassUtils;
 
 /**
- * [Class description.  The first sentence should be a meaningful summary of the class since it
- * will be displayed as the class summary on the Javadoc package page.]
- * <p>
- * [Other notes, including guaranteed invariants, usage instructions and/or examples, reminders
+ * [Class description. The first sentence should be a meaningful summary of the class since it will
+ * be displayed as the class summary on the Javadoc package page.]
+ *
+ * <p>[Other notes, including guaranteed invariants, usage instructions and/or examples, reminders
  * about desired improvements, etc.]
  *
  * @author Denny
@@ -18,38 +18,34 @@ import org.litespring.util.ClassUtils;
  * @see [String]
  * @see {URL}
  * @see [Class name#method name]
- **/
-
+ */
 public abstract class AbstractApplicationContext implements ApplicationContext {
 
-	private DefaultBeanFactory factory = null;
-	private ClassLoader beanClassLoader;
+  private DefaultBeanFactory factory = null;
+  private ClassLoader beanClassLoader;
 
-	public AbstractApplicationContext(String configFile){
-		factory = new DefaultBeanFactory();
-		XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(factory);
-		Resource resource = this.getResourceByPath(configFile);
-		reader.loadBeanDefinitions(resource);
-		factory.setBeanClassLoader(this.getBeanClassLoader());
-	}
+  public AbstractApplicationContext(String configFile) {
+    factory = new DefaultBeanFactory();
+    XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(factory);
+    Resource resource = this.getResourceByPath(configFile);
+    reader.loadBeanDefinitions(resource);
+    factory.setBeanClassLoader(this.getBeanClassLoader());
+  }
 
-	@Override
-	public Object getBean(String beanID) {
+  public Object getBean(String beanID) {
 
-		return factory.getBean(beanID);
-	}
+    return factory.getBean(beanID);
+  }
 
-	protected abstract Resource getResourceByPath(String path);
+  protected abstract Resource getResourceByPath(String path);
 
-	@Override
-	public void setBeanClassLoader(ClassLoader beanClassLoader) {
-		this.beanClassLoader = beanClassLoader;
-	}
+  public void setBeanClassLoader(ClassLoader beanClassLoader) {
+    this.beanClassLoader = beanClassLoader;
+  }
 
-	@Override
-	public ClassLoader getBeanClassLoader() {
-		return (this.beanClassLoader != null ? this.beanClassLoader : ClassUtils.getDefaultClassLoader());
-	}
-
+  public ClassLoader getBeanClassLoader() {
+    return (this.beanClassLoader != null
+        ? this.beanClassLoader
+        : ClassUtils.getDefaultClassLoader());
+  }
 }
-

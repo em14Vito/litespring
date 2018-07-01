@@ -4,10 +4,10 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * [Class description.  The first sentence should be a meaningful summary of the class since it
- * will be displayed as the class summary on the Javadoc package page.]
- * <p>
- * [Other notes, including guaranteed invariants, usage instructions and/or examples, reminders
+ * [Class description. The first sentence should be a meaningful summary of the class since it will
+ * be displayed as the class summary on the Javadoc package page.]
+ *
+ * <p>[Other notes, including guaranteed invariants, usage instructions and/or examples, reminders
  * about desired improvements, etc.]
  *
  * @author Denny
@@ -15,11 +15,10 @@ import java.io.InputStream;
  * @see [String]
  * @see {URL}
  * @see [Class name#method name]
- **/
-
+ */
 public interface Resource {
 
-	public InputStream getInputStream() throws IOException;
-	public String getDescription();
+  public InputStream getInputStream() throws IOException;
 
+  public String getDescription();
 }

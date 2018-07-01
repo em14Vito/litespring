@@ -1,4 +1,4 @@
-package org.litespring.beans.factory;
+package org.litespring.beans.factory.config;
 
 /**
  * [Class description. The first sentence should be a meaningful summary of the class since it will
@@ -8,12 +8,19 @@ package org.litespring.beans.factory;
  * about desired improvements, etc.]
  *
  * @author Denny
- * @version 1.0.0 14/06/2018 12:21 AM
+ * @version 1.0.0 30/06/2018 5:15 PM
  * @see [String]
  * @see {URL}
  * @see [Class name#method name]
  */
-public interface BeanFactory {
+public class TypedStringValue {
+  private String value;
 
-  Object getBean(String petStore);
+  public TypedStringValue(String value) {
+    this.value = value;
+  }
+
+  public String getValue() {
+    return this.value;
+  }
 }

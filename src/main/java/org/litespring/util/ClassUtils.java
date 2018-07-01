@@ -32,10 +32,8 @@ import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 
-
 /**
- * Miscellaneous class utility methods.
- * Mainly for internal use within the framework.
+ * Miscellaneous class utility methods. Mainly for internal use within the framework.
  *
  * @author Juergen Hoeller
  * @author Keith Donald
@@ -47,19 +45,35 @@ public abstract class ClassUtils {
 
 
 	/**
-	 * Return the default ClassLoader to use: typically the thread context
-	 * ClassLoader, if available; the ClassLoader that loaded the ClassUtils
-	 * class will be used as fallback.
-	 * <p>Call this method if you intend to use the thread context ClassLoader
-	 * in a scenario where you clearly prefer a non-null ClassLoader reference:
-	 * for example, for class path resource loading (but not necessarily for
-	 * {@code Class.forName}, which accepts a {@code null} ClassLoader
-	 * reference as well).
-	 * @return the default ClassLoader (only {@code null} if even the system
-	 * ClassLoader isn't accessible)
-	 * @see Thread#getContextClassLoader()
-	 * @see ClassLoader#getSystemClassLoader()
+	 * Map with primitive wrapper type as key and corresponding primitive
+	 * type as value, for example: Integer.class -> int.class.
 	 */
+	private static final Map<Class<?>, Class<?>> wrapperToPrimitiveTypeMap = new HashMap<Class<?>, Class<?>>(8);
+
+	/**
+	 * Map with primitive type as key and corresponding wrapper
+	 * type as value, for example: int.class -> Integer.class.
+	 */
+	private static final Map<Class<?>, Class<?>> primitiveTypeToWrapperMap = new HashMap<Class<?>, Class<?>>(8);
+
+	static {
+		wrapperToPrimitiveTypeMap.put(Boolean.class, boolean.class);
+		wrapperToPrimitiveTypeMap.put(Byte.class, byte.class);
+		wrapperToPrimitiveTypeMap.put(Character.class, char.class);
+		wrapperToPrimitiveTypeMap.put(Double.class, double.class);
+		wrapperToPrimitiveTypeMap.put(Float.class, float.class);
+		wrapperToPrimitiveTypeMap.put(Integer.class, int.class);
+		wrapperToPrimitiveTypeMap.put(Long.class, long.class);
+		wrapperToPrimitiveTypeMap.put(Short.class, short.class);
+
+		for (Map.Entry<Class<?>, Class<?>> entry : wrapperToPrimitiveTypeMap.entrySet()) {
+			primitiveTypeToWrapperMap.put(entry.getValue(), entry.getKey());
+
+		}
+
+	}
+
+
 	public static ClassLoader getDefaultClassLoader() {
 		ClassLoader cl = null;
 		try {
@@ -83,6 +97,28 @@ public abstract class ClassUtils {
 		}
 		return cl;
 	}
-
-
+	public static boolean isAssignableValue(Class<?> type, Object value) {
+		Assert.notNull(type, "Type must not be null");
+		return (value != null ? isAssignable(type, value.getClass()) : !type.isPrimitive());
+	}
+	public static boolean isAssignable(Class<?> lhsType, Class<?> rhsType) {
+		Assert.notNull(lhsType, "Left-hand side type must not be null");
+		Assert.notNull(rhsType, "Right-hand side type must not be null");
+		if (lhsType.isAssignableFrom(rhsType)) {
+			return true;
+		}
+		if (lhsType.isPrimitive()) {
+			Class<?> resolvedPrimitive = wrapperToPrimitiveTypeMap.get(rhsType);
+			if (resolvedPrimitive != null && lhsType.equals(resolvedPrimitive)) {
+				return true;
+			}
+		}
+		else {
+			Class<?> resolvedWrapper = primitiveTypeToWrapperMap.get(rhsType);
+			if (resolvedWrapper != null && lhsType.isAssignableFrom(resolvedWrapper)) {
+				return true;
+			}
+		}
+		return false;
+	}
 }

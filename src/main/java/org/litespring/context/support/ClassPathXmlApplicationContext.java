@@ -20,14 +20,13 @@ import org.litespring.core.io.Resource;
  * @see [Class name#method name]
  */
 public class ClassPathXmlApplicationContext extends AbstractApplicationContext {
-	public ClassPathXmlApplicationContext(String configFile) {
-		super(configFile);
+  public ClassPathXmlApplicationContext(String configFile) {
+    super(configFile);
+  }
 
-	}
+  @Override
+  protected Resource getResourceByPath(String path) {
 
-	@Override
-	protected Resource getResourceByPath(String path) {
-
-		return new ClassPathResource(path,this.getBeanClassLoader());
-	}
+    return new ClassPathResource(path, this.getBeanClassLoader());
+  }
 }
