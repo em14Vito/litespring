@@ -16,6 +16,7 @@ import org.litespring.beans.BeanDefinition;
  * @see [Class name#method name]
  */
 import org.litespring.beans.BeanDefinition;
+import org.litespring.beans.ConstructorArgument;
 import org.litespring.beans.PropertyValue;
 
 import java.util.ArrayList;
@@ -28,6 +29,8 @@ public class GenericBeanDefinition implements BeanDefinition {
   private boolean prototype = false;
   private String scope = SCOPE_DEFAULT;
   List<PropertyValue> propertyValues = new ArrayList<PropertyValue>();
+
+  private ConstructorArgument constructorArgument = new ConstructorArgument();
 
   public GenericBeanDefinition(String id, String beanClassName) {
 
@@ -44,7 +47,19 @@ public class GenericBeanDefinition implements BeanDefinition {
     return this.propertyValues;
   }
 
-  public boolean isSingleton() {
+  public ConstructorArgument getConstructorArgument() {
+    return this.constructorArgument;
+  }
+
+	public String getID() {
+		return this.id;
+	}
+
+	public boolean hasConstructorArgumentValues() {
+		return !this.constructorArgument.isEmpty();
+	}
+
+	public boolean isSingleton() {
     return this.singleton;
   }
 

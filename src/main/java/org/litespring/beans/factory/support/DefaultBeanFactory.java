@@ -69,22 +69,28 @@ public class DefaultBeanFactory extends DefaultSingletonBeanRegistry
     // 创建实例
     Object bean = instantiateBean(bd);
     // 设置属性
-//    populateBean(bd, bean);  自定义的convert
+    //    populateBean(bd, bean);  自定义的convert
 
-	  //apache common 下的 beanUtils执行转换
-	  populateBeanWithCommonBeanUtils(bd, bean);
+    // apache common 下的 beanUtils执行转换
+    populateBeanWithCommonBeanUtils(bd, bean);
 
     return bean;
   }
 
   private Object instantiateBean(BeanDefinition bd) {
-    ClassLoader cl = this.getBeanClassLoader();
-    String beanClassName = bd.getBeanClassName();
-    try {
-      Class<?> clz = cl.loadClass(beanClassName);
-      return clz.newInstance();
-    } catch (Exception e) {
-      throw new BeanCreationException("create bean for " + beanClassName + " failed", e);
+
+    if (bd.hasConstructorArgumentValues()) {
+      ConstructorResolver resolver = new ConstructorResolver(this);
+      return resolver.autowireConstructor(bd);
+    } else {
+      ClassLoader cl = this.getBeanClassLoader();
+      String beanClassName = bd.getBeanClassName();
+      try {
+        Class<?> clz = cl.loadClass(beanClassName);
+        return clz.newInstance();
+      } catch (Exception e) {
+        throw new BeanCreationException("create bean for " + beanClassName + " failed", e);
+      }
     }
   }
 
@@ -120,29 +126,27 @@ public class DefaultBeanFactory extends DefaultSingletonBeanRegistry
     }
   }
 
+  public void populateBeanWithCommonBeanUtils(BeanDefinition bd, Object bean) {
+    List<PropertyValue> pvs = bd.getPropertyValues();
 
-	public void populateBeanWithCommonBeanUtils(BeanDefinition bd, Object bean){
-		List<PropertyValue> pvs = bd.getPropertyValues();
+    if (CollectionUtils.isEmpty(pvs)) {
+      return;
+    }
+    BeanDefinitionValueResolver valueResolver = new BeanDefinitionValueResolver(this);
 
-		if (CollectionUtils.isEmpty(pvs)) {
-			return;
-		}
-		BeanDefinitionValueResolver valueResolver = new BeanDefinitionValueResolver(this);
+    try {
+      for (PropertyValue pv : pvs) {
+        String propertyName = pv.getName();
+        Object originalValue = pv.getValue();
+        Object resolvedValue = valueResolver.resolveValueIfNecessary(originalValue);
+        BeanUtils.setProperty(bean, propertyName, resolvedValue);
+      }
 
-		try{
-			for (PropertyValue pv : pvs){
-				String propertyName = pv.getName();
-				Object originalValue = pv.getValue();
-				Object resolvedValue = valueResolver.resolveValueIfNecessary(originalValue);
-				BeanUtils.setProperty(bean,propertyName,resolvedValue);
-			}
-
-		}catch (Exception e) {
-			throw new BeanCreationException(
-					"Common BeanUtils convert error [" + bd.getBeanClassName() + "]", e);
-		}
-
-	}
+    } catch (Exception e) {
+      throw new BeanCreationException(
+          "Common BeanUtils convert error [" + bd.getBeanClassName() + "]", e);
+    }
+  }
 
   public void setBeanClassLoader(ClassLoader beanClassLoader) {
     this.beanClassLoader = beanClassLoader;
