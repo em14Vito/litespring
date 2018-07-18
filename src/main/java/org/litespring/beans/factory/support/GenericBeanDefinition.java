@@ -28,8 +28,8 @@ public class GenericBeanDefinition implements BeanDefinition {
   private boolean singleton = true;
   private boolean prototype = false;
   private String scope = SCOPE_DEFAULT;
-  List<PropertyValue> propertyValues = new ArrayList<PropertyValue>();
 
+  List<PropertyValue> propertyValues = new ArrayList<PropertyValue>();
   private ConstructorArgument constructorArgument = new ConstructorArgument();
 
   public GenericBeanDefinition(String id, String beanClassName) {
@@ -38,28 +38,18 @@ public class GenericBeanDefinition implements BeanDefinition {
     this.beanClassName = beanClassName;
   }
 
+  public GenericBeanDefinition() {}
+
   public String getBeanClassName() {
 
     return this.beanClassName;
   }
 
-  public List<PropertyValue> getPropertyValues() {
-    return this.propertyValues;
+  public void setBeanClassName(String className) {
+    this.beanClassName = className;
   }
 
-  public ConstructorArgument getConstructorArgument() {
-    return this.constructorArgument;
-  }
-
-	public String getID() {
-		return this.id;
-	}
-
-	public boolean hasConstructorArgumentValues() {
-		return !this.constructorArgument.isEmpty();
-	}
-
-	public boolean isSingleton() {
+  public boolean isSingleton() {
     return this.singleton;
   }
 
@@ -75,5 +65,25 @@ public class GenericBeanDefinition implements BeanDefinition {
     this.scope = scope;
     this.singleton = SCOPE_SINGLETON.equals(scope) || SCOPE_DEFAULT.equals(scope);
     this.prototype = SCOPE_PROTOTYPE.equals(scope);
+  }
+
+  public List<PropertyValue> getPropertyValues() {
+    return this.propertyValues;
+  }
+
+  public ConstructorArgument getConstructorArgument() {
+    return this.constructorArgument;
+  }
+
+  public String getID() {
+    return this.id;
+  }
+
+  public void setId(String id) {
+    this.id = id;
+  }
+
+  public boolean hasConstructorArgumentValues() {
+    return !this.constructorArgument.isEmpty();
   }
 }

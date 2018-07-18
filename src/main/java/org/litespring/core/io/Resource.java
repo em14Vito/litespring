@@ -18,7 +18,7 @@ import java.io.InputStream;
  */
 public interface Resource {
 
-  public InputStream getInputStream() throws IOException;
+	public InputStream getInputStream() throws IOException;
 
-  public String getDescription();
+	public String getDescription();
 }
