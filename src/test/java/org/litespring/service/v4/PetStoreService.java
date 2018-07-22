@@ -17,7 +17,7 @@ import org.litespring.stereotype.Component;
  * @see [Class name#method name]
  **/
 
-@Component(value="petStore")
+@Component(value = "petStore")
 public class PetStoreService {
 	@Autowired
 	private AccountDao accountDao;

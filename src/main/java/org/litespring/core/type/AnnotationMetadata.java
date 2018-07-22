@@ -15,7 +15,7 @@ import java.util.Set;
  * @see {URL}
  * @see [Class name#method name]
  **/
-public interface AnnotationMetadata extends ClassMetadata{
+public interface AnnotationMetadata extends ClassMetadata {
 
 	Set<String> getAnnotationTypes();
 

@@ -26,17 +26,17 @@ import java.io.File;
 public class ApplicationContextTest {
 
 	@Test
-	public void testGetBean(){
+	public void testGetBean() {
 		ApplicationContext context = new ClassPathXmlApplicationContext("petstore-v1.xml");
 		PetStoreService petStoreService = (PetStoreService) context.getBean("petStore");
-        Assert.assertNotNull(petStoreService);
+		Assert.assertNotNull(petStoreService);
 	}
 
 	@Test
-	public void testGetBeanFromFileSystemContext(){
-		ApplicationContext ctx = new FileSystemXmlApplicationContext("src"+File.separator+"test"+File.separator+
-				"resources"+File.separator+"petstore-v1.xml");
-		PetStoreService petStore = (PetStoreService)ctx.getBean("petStore");
+	public void testGetBeanFromFileSystemContext() {
+		ApplicationContext ctx = new FileSystemXmlApplicationContext("src" + File.separator + "test" + File.separator +
+				"resources" + File.separator + "petstore-v1.xml");
+		PetStoreService petStore = (PetStoreService) ctx.getBean("petStore");
 		Assert.assertNotNull(petStore);
 
 	}

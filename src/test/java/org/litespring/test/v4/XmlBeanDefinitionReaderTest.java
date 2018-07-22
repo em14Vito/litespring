@@ -26,7 +26,7 @@ import org.litespring.stereotype.Component;
 public class XmlBeanDefinitionReaderTest {
 
 	@Test
-	public void testParseScanedBean(){
+	public void testParseScanedBean() {
 
 		DefaultBeanFactory factory = new DefaultBeanFactory();
 		XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(factory);
@@ -37,7 +37,7 @@ public class XmlBeanDefinitionReaderTest {
 		{
 			BeanDefinition bd = factory.getBeanDefinition("petStore");
 			Assert.assertTrue(bd instanceof ScannedGenericBeanDefinition);
-			ScannedGenericBeanDefinition sbd = (ScannedGenericBeanDefinition)bd;
+			ScannedGenericBeanDefinition sbd = (ScannedGenericBeanDefinition) bd;
 			AnnotationMetadata amd = sbd.getMetadata();
 
 
@@ -48,14 +48,14 @@ public class XmlBeanDefinitionReaderTest {
 		{
 			BeanDefinition bd = factory.getBeanDefinition("accountDao");
 			Assert.assertTrue(bd instanceof ScannedGenericBeanDefinition);
-			ScannedGenericBeanDefinition sbd = (ScannedGenericBeanDefinition)bd;
+			ScannedGenericBeanDefinition sbd = (ScannedGenericBeanDefinition) bd;
 			AnnotationMetadata amd = sbd.getMetadata();
 			Assert.assertTrue(amd.hasAnnotation(annotation));
 		}
 		{
 			BeanDefinition bd = factory.getBeanDefinition("itemDao");
 			Assert.assertTrue(bd instanceof ScannedGenericBeanDefinition);
-			ScannedGenericBeanDefinition sbd = (ScannedGenericBeanDefinition)bd;
+			ScannedGenericBeanDefinition sbd = (ScannedGenericBeanDefinition) bd;
 			AnnotationMetadata amd = sbd.getMetadata();
 			Assert.assertTrue(amd.hasAnnotation(annotation));
 		}

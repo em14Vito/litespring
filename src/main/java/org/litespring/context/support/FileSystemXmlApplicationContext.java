@@ -22,13 +22,13 @@ import org.litespring.core.io.Resource;
  */
 public class FileSystemXmlApplicationContext extends AbstractApplicationContext {
 
-  public FileSystemXmlApplicationContext(String configFile) {
-    super(configFile);
-  }
+	public FileSystemXmlApplicationContext(String configFile) {
+		super(configFile);
+	}
 
-  @Override
-  protected Resource getResourceByPath(String path) {
+	@Override
+	protected Resource getResourceByPath(String path) {
 
-    return new FileSystemResource(path);
-  }
+		return new FileSystemResource(path);
+	}
 }

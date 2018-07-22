@@ -22,7 +22,6 @@ import java.io.InputStream;
  **/
 
 
-
 public class SimpleMetadataReader implements MetadataReader {
 
 	private final Resource resource;
@@ -38,8 +37,7 @@ public class SimpleMetadataReader implements MetadataReader {
 
 		try {
 			classReader = new ClassReader(is);
-		}
-		finally {
+		} finally {
 			is.close();
 		}
 

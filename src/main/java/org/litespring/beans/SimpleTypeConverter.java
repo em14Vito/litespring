@@ -28,31 +28,33 @@ public class SimpleTypeConverter implements TypeConverter {
 
 	private Map<Class<?>, PropertyEditor> defaultEditors;
 
-	public SimpleTypeConverter(){
+	public SimpleTypeConverter() {
 
 	}
+
 	public <T> T convertIfNecessary(Object value, Class<T> requiredType) throws TypeMismatchException {
 
-		if(ClassUtils.isAssignableValue(requiredType, value)){
-			return (T)value;
-		} else{
-			if(value instanceof String){
+		if (ClassUtils.isAssignableValue(requiredType, value)) {
+			return (T) value;
+		} else {
+			if (value instanceof String) {
 				PropertyEditor editor = findDefaultEditor(requiredType);
-				try{
-					editor.setAsText((String)value);
-				}catch(IllegalArgumentException e){
-					throw new TypeMismatchException(value,requiredType);
+				try {
+					editor.setAsText((String) value);
+				} catch (IllegalArgumentException e) {
+					throw new TypeMismatchException(value, requiredType);
 				}
-				return (T)editor.getValue();
-			} else{
-				throw new RuntimeException("Todo : can't convert value for "+value +" class:"+requiredType);
+				return (T) editor.getValue();
+			} else {
+				throw new RuntimeException("Todo : can't convert value for " + value + " class:" + requiredType);
 			}
 		}
 	}
+
 	private PropertyEditor findDefaultEditor(Class<?> requiredType) {
 		PropertyEditor editor = this.getDefaultEditor(requiredType);
-		if(editor == null){
-			throw new RuntimeException("Editor for "+ requiredType +" has not been implemented");
+		if (editor == null) {
+			throw new RuntimeException("Editor for " + requiredType + " has not been implemented");
 		}
 		return editor;
 	}

@@ -43,17 +43,25 @@ import java.util.Set;
  * @since 1.1
  */
 public abstract class ClassUtils {
-	/** The package separator character: '.' */
+	/**
+	 * The package separator character: '.'
+	 */
 	private static final char PACKAGE_SEPARATOR = '.';
 
-	/** The path separator character: '/' */
+	/**
+	 * The path separator character: '/'
+	 */
 //	private static final char PATH_SEPARATOR = '/';
 	private static final char PATH_SEPARATOR = File.separator.charAt(0);
 
-	/** The inner class separator character: '$' */
+	/**
+	 * The inner class separator character: '$'
+	 */
 	private static final char INNER_CLASS_SEPARATOR = '$';
 
-	/** The CGLIB class separator: "$$" */
+	/**
+	 * The CGLIB class separator: "$$"
+	 */
 	public static final String CGLIB_CLASS_SEPARATOR = "$$";
 
 	/**
@@ -90,8 +98,7 @@ public abstract class ClassUtils {
 		ClassLoader cl = null;
 		try {
 			cl = Thread.currentThread().getContextClassLoader();
-		}
-		catch (Throwable ex) {
+		} catch (Throwable ex) {
 			// Cannot access thread context ClassLoader - falling back...
 		}
 		if (cl == null) {
@@ -101,18 +108,19 @@ public abstract class ClassUtils {
 				// getClassLoader() returning null indicates the bootstrap ClassLoader
 				try {
 					cl = ClassLoader.getSystemClassLoader();
-				}
-				catch (Throwable ex) {
+				} catch (Throwable ex) {
 					// Cannot access system ClassLoader - oh well, maybe the caller can live with null...
 				}
 			}
 		}
 		return cl;
 	}
+
 	public static boolean isAssignableValue(Class<?> type, Object value) {
 		Assert.notNull(type, "Type must not be null");
 		return (value != null ? isAssignable(type, value.getClass()) : !type.isPrimitive());
 	}
+
 	public static boolean isAssignable(Class<?> lhsType, Class<?> rhsType) {
 		Assert.notNull(lhsType, "Left-hand side type must not be null");
 		Assert.notNull(rhsType, "Right-hand side type must not be null");
@@ -124,8 +132,7 @@ public abstract class ClassUtils {
 			if (resolvedPrimitive != null && lhsType.equals(resolvedPrimitive)) {
 				return true;
 			}
-		}
-		else {
+		} else {
 			Class<?> resolvedWrapper = primitiveTypeToWrapperMap.get(rhsType);
 			if (resolvedWrapper != null && lhsType.isAssignableFrom(resolvedWrapper)) {
 				return true;
@@ -138,10 +145,12 @@ public abstract class ClassUtils {
 		Assert.notNull(resourcePath, "Resource path must not be null");
 		return resourcePath.replace(PATH_SEPARATOR, PACKAGE_SEPARATOR);
 	}
+
 	public static String convertClassNameToResourcePath(String className) {
 		Assert.notNull(className, "Class name must not be null");
 		return className.replace(PACKAGE_SEPARATOR, PATH_SEPARATOR);
 	}
+
 	public static String getShortName(String className) {
 		int lastDotIndex = className.lastIndexOf(PACKAGE_SEPARATOR);
 		int nameEndIndex = className.indexOf(CGLIB_CLASS_SEPARATOR);

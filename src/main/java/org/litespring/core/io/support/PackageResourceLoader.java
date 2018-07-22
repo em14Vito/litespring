@@ -26,7 +26,7 @@ import java.util.Set;
  * @see [Class name#method name]
  **/
 
-public class PackageResourceLoader  {
+public class PackageResourceLoader {
 
 	private static final Log logger = LogFactory.getLog(PackageResourceLoader.class);
 
@@ -42,7 +42,6 @@ public class PackageResourceLoader  {
 	}
 
 
-
 	public ClassLoader getClassLoader() {
 		return this.classLoader;
 	}
@@ -56,13 +55,14 @@ public class PackageResourceLoader  {
 
 		Set<File> matchingFiles = retrieveMatchingFiles(rootDir);
 		Resource[] result = new Resource[matchingFiles.size()];
-		int i=0;
+		int i = 0;
 		for (File file : matchingFiles) {
-			result[i++]=new FileSystemResource(file);
+			result[i++] = new FileSystemResource(file);
 		}
 		return result;
 
 	}
+
 	protected Set<File> retrieveMatchingFiles(File rootDir) throws IOException {
 		if (!rootDir.exists()) {
 			// Silently skip non-existing directories.
@@ -97,7 +97,7 @@ public class PackageResourceLoader  {
 	}
 
 
-	protected void doRetrieveMatchingFiles( File dir, Set<File> result) throws IOException {
+	protected void doRetrieveMatchingFiles(File dir, Set<File> result) throws IOException {
 
 		File[] dirContents = dir.listFiles();
 		if (dirContents == null) {
@@ -108,17 +108,16 @@ public class PackageResourceLoader  {
 		}
 		for (File content : dirContents) {
 
-			if (content.isDirectory() ) {
+			if (content.isDirectory()) {
 				if (!content.canRead()) {
 					if (logger.isDebugEnabled()) {
 						logger.debug("Skipping subdirectory [" + dir.getAbsolutePath() +
 								"] because the application is not allowed to read the directory");
 					}
-				}
-				else {
+				} else {
 					doRetrieveMatchingFiles(content, result);
 				}
-			} else{
+			} else {
 				result.add(content);
 			}
 

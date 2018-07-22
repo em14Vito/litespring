@@ -31,7 +31,6 @@ public class ClassMetadataReadingVisitor extends ClassVisitor {
 	private String[] interfaces;
 
 
-
 	public ClassMetadataReadingVisitor() {
 		super(SpringAsmInfo.ASM_VERSION);
 	}

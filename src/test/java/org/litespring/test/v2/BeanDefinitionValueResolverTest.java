@@ -13,7 +13,7 @@ import org.litespring.dao.v2.AccountDao;
 
 /**
  * <p>
- *     BeanValue的解析器 resolver(常用)
+ * BeanValue的解析器 resolver(常用)
  * </p>
  *
  * @author Denny
@@ -28,7 +28,7 @@ public class BeanDefinitionValueResolverTest {
 	BeanDefinitionValueResolver resolver = null;
 
 	@Before
-	public void initBenfactory(){
+	public void initBenfactory() {
 		DefaultBeanFactory factory = new DefaultBeanFactory();
 		XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(factory);
 		reader.loadBeanDefinitions(new ClassPathResource("petstore-v2.xml"));
@@ -44,6 +44,7 @@ public class BeanDefinitionValueResolverTest {
 		Assert.assertNotNull(value);
 		Assert.assertTrue(value instanceof AccountDao);
 	}
+
 	@Test
 	public void testResolveTypedStringValue() {
 

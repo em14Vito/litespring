@@ -22,8 +22,8 @@ public class TypeMismatchException extends BeansException {
 
 	private Class<?> requiredType;
 
-	public TypeMismatchException( Object value, Class<?> requiredType) {
-		super("Failed to convert value :"+value + "to type "+requiredType);
+	public TypeMismatchException(Object value, Class<?> requiredType) {
+		super("Failed to convert value :" + value + "to type " + requiredType);
 		this.value = value;
 		this.requiredType = requiredType;
 	}

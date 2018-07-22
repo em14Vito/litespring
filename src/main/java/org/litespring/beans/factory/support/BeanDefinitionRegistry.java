@@ -10,13 +10,13 @@ import org.litespring.beans.BeanDefinition;
  * @see [Class name#method name]
  */
 public interface BeanDefinitionRegistry {
-  BeanDefinition getBeanDefinition(String beanId);
+	BeanDefinition getBeanDefinition(String beanId);
 
-  /**
-   * 注册BeanDefinition
-   *
-   * @param id
-   * @param bd
-   */
-  void registerBeanDefinition(String id, BeanDefinition bd);
+	/**
+	 * 注册BeanDefinition
+	 *
+	 * @param id
+	 * @param bd
+	 */
+	void registerBeanDefinition(String id, BeanDefinition bd);
 }

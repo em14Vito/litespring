@@ -28,24 +28,25 @@ public class TypeConverterTest {
 	public void testConvertStringToInt() {
 		TypeConverter converter = new SimpleTypeConverter();
 		Integer i = converter.convertIfNecessary("3", Integer.class);
-		Assert.assertEquals(3,i.intValue());
+		Assert.assertEquals(3, i.intValue());
 
-		try{
+		try {
 			converter.convertIfNecessary("3.1", Integer.class);
-		}catch(TypeMismatchException e){
+		} catch (TypeMismatchException e) {
 			return;
 		}
 		fail();
 	}
+
 	@Test
-	public void testConvertStringToBoolean(){
+	public void testConvertStringToBoolean() {
 		TypeConverter converter = new SimpleTypeConverter();
 		Boolean b = converter.convertIfNecessary("true", Boolean.class);
-		Assert.assertEquals(true,b.booleanValue());
+		Assert.assertEquals(true, b.booleanValue());
 
-		try{
+		try {
 			converter.convertIfNecessary("xxxyyyzzz", Boolean.class);
-		}catch(TypeMismatchException e){
+		} catch (TypeMismatchException e) {
 			return;
 		}
 		fail();

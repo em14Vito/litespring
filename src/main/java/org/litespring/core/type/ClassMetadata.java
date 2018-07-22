@@ -30,12 +30,10 @@ public interface ClassMetadata {
 	boolean isAbstract();
 
 
-
 	/**
 	 * Return whether the underlying class is marked as 'final'.
 	 */
 	boolean isFinal();
-
 
 
 	/**
@@ -54,7 +52,6 @@ public interface ClassMetadata {
 	 * implements, or an empty array if there are none.
 	 */
 	String[] getInterfaceNames();
-
 
 
 }

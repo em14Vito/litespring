@@ -14,7 +14,7 @@ package org.litespring.beans.factory.config;
  * @see [Class name#method name]
  */
 public interface SingletonBeanRegistry {
-  void registerSingleton(String beanName, Object singletonObject);
+	void registerSingleton(String beanName, Object singletonObject);
 
-  Object getSingleton(String beanName);
+	Object getSingleton(String beanName);
 }

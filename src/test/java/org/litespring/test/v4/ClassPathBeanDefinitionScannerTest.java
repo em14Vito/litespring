@@ -26,7 +26,7 @@ import org.litespring.stereotype.Component;
 public class ClassPathBeanDefinitionScannerTest {
 
 	@Test
-	public void testParseScanedBean(){
+	public void testParseScanedBean() {
 
 		DefaultBeanFactory factory = new DefaultBeanFactory();
 
@@ -41,7 +41,7 @@ public class ClassPathBeanDefinitionScannerTest {
 		{
 			BeanDefinition bd = factory.getBeanDefinition("petStore");
 			Assert.assertTrue(bd instanceof ScannedGenericBeanDefinition);
-			ScannedGenericBeanDefinition sbd = (ScannedGenericBeanDefinition)bd;
+			ScannedGenericBeanDefinition sbd = (ScannedGenericBeanDefinition) bd;
 			AnnotationMetadata amd = sbd.getMetadata();
 
 
@@ -52,14 +52,14 @@ public class ClassPathBeanDefinitionScannerTest {
 		{
 			BeanDefinition bd = factory.getBeanDefinition("accountDao");
 			Assert.assertTrue(bd instanceof ScannedGenericBeanDefinition);
-			ScannedGenericBeanDefinition sbd = (ScannedGenericBeanDefinition)bd;
+			ScannedGenericBeanDefinition sbd = (ScannedGenericBeanDefinition) bd;
 			AnnotationMetadata amd = sbd.getMetadata();
 			Assert.assertTrue(amd.hasAnnotation(annotation));
 		}
 		{
 			BeanDefinition bd = factory.getBeanDefinition("itemDao");
 			Assert.assertTrue(bd instanceof ScannedGenericBeanDefinition);
-			ScannedGenericBeanDefinition sbd = (ScannedGenericBeanDefinition)bd;
+			ScannedGenericBeanDefinition sbd = (ScannedGenericBeanDefinition) bd;
 			AnnotationMetadata amd = sbd.getMetadata();
 			Assert.assertTrue(amd.hasAnnotation(annotation));
 		}

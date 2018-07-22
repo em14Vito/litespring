@@ -45,20 +45,19 @@ public class ClassPathBeanDefinitionScanner {
 
 	public Set<BeanDefinition> doScan(String packagesToScan) {
 
-		String[] basePackages = StringUtils.tokenizeToStringArray(packagesToScan,",");
+		String[] basePackages = StringUtils.tokenizeToStringArray(packagesToScan, ",");
 
 		Set<BeanDefinition> beanDefinitions = new LinkedHashSet<BeanDefinition>();
 		for (String basePackage : basePackages) {
 			Set<BeanDefinition> candidates = findCandidateComponents(basePackage);
 			for (BeanDefinition candidate : candidates) {
 				beanDefinitions.add(candidate);
-				registry.registerBeanDefinition(candidate.getID(),candidate);
+				registry.registerBeanDefinition(candidate.getID(), candidate);
 
 			}
 		}
 		return beanDefinitions;
 	}
-
 
 
 	public Set<BeanDefinition> findCandidateComponents(String basePackage) {
@@ -72,21 +71,19 @@ public class ClassPathBeanDefinitionScanner {
 
 					MetadataReader metadataReader = new SimpleMetadataReader(resource);
 
-					if(metadataReader.getAnnotationMetadata().hasAnnotation(Component.class.getName())){
+					if (metadataReader.getAnnotationMetadata().hasAnnotation(Component.class.getName())) {
 						ScannedGenericBeanDefinition sbd = new ScannedGenericBeanDefinition(metadataReader.getAnnotationMetadata());
 						String beanName = this.beanNameGenerator.generateBeanName(sbd, this.registry);
 						sbd.setId(beanName);
 						candidates.add(sbd);
 					}
-				}
-				catch (Throwable ex) {
+				} catch (Throwable ex) {
 					throw new BeanDefinitionStoreException(
 							"Failed to read candidate component class: " + resource, ex);
 				}
 
 			}
-		}
-		catch (IOException ex) {
+		} catch (IOException ex) {
 			throw new BeanDefinitionStoreException("I/O failure during classpath scanning", ex);
 		}
 		return candidates;

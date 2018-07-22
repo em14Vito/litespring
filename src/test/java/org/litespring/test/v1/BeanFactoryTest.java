@@ -33,11 +33,12 @@ public class BeanFactoryTest {
 	XmlBeanDefinitionReader reader = null;
 
 	@Before
-	public void setUp(){
+	public void setUp() {
 		factory = new DefaultBeanFactory();
 		reader = new XmlBeanDefinitionReader(factory);
 
 	}
+
 	@Test
 	public void testGetBean() {
 
@@ -49,36 +50,38 @@ public class BeanFactoryTest {
 
 		assertFalse(bd.isPrototype());
 
-		assertEquals(BeanDefinition.SCOPE_DEFAULT,bd.getScope());
+		assertEquals(BeanDefinition.SCOPE_DEFAULT, bd.getScope());
 
-		assertEquals("org.litespring.service.v1.PetStoreService",bd.getBeanClassName());
+		assertEquals("org.litespring.service.v1.PetStoreService", bd.getBeanClassName());
 
-		PetStoreService petStore = (PetStoreService)factory.getBean("petStore");
+		PetStoreService petStore = (PetStoreService) factory.getBean("petStore");
 
 		assertNotNull(petStore);
 
-		PetStoreService petStore1 = (PetStoreService)factory.getBean("petStore");
+		PetStoreService petStore1 = (PetStoreService) factory.getBean("petStore");
 
 		assertTrue(petStore.equals(petStore1));
 	}
 
 	@Test
-	public void testInvalidBean(){
+	public void testInvalidBean() {
 
+		Object result = null;
 		reader.loadBeanDefinitions(new ClassPathResource("petstore-v1.xml"));
-		try{
-			factory.getBean("invalidBean");
-		}catch(BeanCreationException e){
+		try {
+			result = factory.getBean("invalidBean");
+		} catch (BeanCreationException e) {
 			return;
 		}
-		Assert.fail("expect BeanCreationException ");
+		Assert.assertNull(result);
 	}
-	@Test
-	public void testInvalidXML(){
 
-		try{
+	@Test
+	public void testInvalidXML() {
+
+		try {
 			reader.loadBeanDefinitions(new ClassPathResource("xxxx.xml"));
-		}catch(BeanDefinitionStoreException e){
+		} catch (BeanDefinitionStoreException e) {
 			return;
 		}
 		Assert.fail("expect BeanDefinitionStoreException ");

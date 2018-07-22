@@ -6,7 +6,7 @@ import org.litespring.beans.factory.config.TypedStringValue;
 
 /**
  * <p>
- *     根据factory 解析 ref,value 下的值变成对象
+ * 根据factory 解析 ref,value 下的值变成对象
  * </p>
  *
  * @author Denny
@@ -33,11 +33,11 @@ public class BeanDefinitionValueResolver {
 			Object bean = this.beanFactory.getBean(refName);
 			return bean;
 
-		}else if (value instanceof TypedStringValue) {
+		} else if (value instanceof TypedStringValue) {
 			return ((TypedStringValue) value).getValue();
-		} else{
+		} else {
 			//TODO
-			throw new RuntimeException("the value " + value +" has not implemented");
+			throw new RuntimeException("the value " + value + " has not implemented");
 		}
 	}
 }

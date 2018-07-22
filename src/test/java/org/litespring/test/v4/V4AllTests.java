@@ -19,7 +19,8 @@ import org.litespring.test.v3.ConstructorResolverTest;
  **/
 
 @RunWith(Suite.class)
-@Suite.SuiteClasses({ ApplicationContextTest4.class, ClassPathBeanDefinitionScannerTest.class, ClassReaderTest.class,
-MetadataReaderTest.class,PackageResourceLoaderTest.class,XmlBeanDefinitionReaderTest.class})
+@Suite.SuiteClasses({ApplicationContextTest4.class, ClassPathBeanDefinitionScannerTest.class, ClassReaderTest.class,
+		MetadataReaderTest.class, PackageResourceLoaderTest.class, XmlBeanDefinitionReaderTest.class,
+		DependencyDescriptorTest.class, InjectionMetadataTest.class, AutowiredAnnotationProcessorTest.class})
 public class V4AllTests {
 }

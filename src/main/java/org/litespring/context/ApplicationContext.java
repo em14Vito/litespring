@@ -12,4 +12,5 @@ import org.litespring.beans.factory.config.ConfigurableBeanFactory;
  * @see {URL}
  * @see [Class name#method name]
  */
-public interface ApplicationContext extends ConfigurableBeanFactory {}
+public interface ApplicationContext extends BeanFactory {
+}

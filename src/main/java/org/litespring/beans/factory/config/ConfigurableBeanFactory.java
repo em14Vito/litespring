@@ -13,10 +13,17 @@ package org.litespring.beans.factory.config;
  * @see {URL}
  * @see [Class name#method name]
  */
+
 import org.litespring.beans.factory.BeanFactory;
 
-public interface ConfigurableBeanFactory extends BeanFactory {
-  void setBeanClassLoader(ClassLoader beanClassLoader);
+import java.util.List;
 
-  ClassLoader getBeanClassLoader();
+public interface ConfigurableBeanFactory extends AutowireCapableBeanFactory {
+	void setBeanClassLoader(ClassLoader beanClassLoader);
+
+	ClassLoader getBeanClassLoader();
+
+	void addBeanPostProcessor(BeanPostProcessor postProcessor);
+
+	List<BeanPostProcessor> getBeanPostProcessors();
 }

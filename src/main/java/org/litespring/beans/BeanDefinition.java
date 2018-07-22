@@ -16,25 +16,32 @@ import java.util.List;
  * @see [Class name#method name]
  */
 public interface BeanDefinition {
-  public static final String SCOPE_SINGLETON = "singleton";
-  public static final String SCOPE_PROTOTYPE = "prototype";
-  public static final String SCOPE_DEFAULT = "";
+	public static final String SCOPE_SINGLETON = "singleton";
+	public static final String SCOPE_PROTOTYPE = "prototype";
+	public static final String SCOPE_DEFAULT = "";
 
-  public boolean isSingleton();
+	public boolean isSingleton();
 
-  public boolean isPrototype();
+	public boolean isPrototype();
 
-  String getScope();
+	String getScope();
 
-  void setScope(String scope);
+	void setScope(String scope);
 
-  public String getBeanClassName();
+	public String getBeanClassName();
 
-  List<PropertyValue> getPropertyValues();
+	List<PropertyValue> getPropertyValues();
 
-  ConstructorArgument getConstructorArgument();
+	ConstructorArgument getConstructorArgument();
 
-  public String getID();
+	public String getID();
 
-  public boolean hasConstructorArgumentValues();
+	public boolean hasConstructorArgumentValues();
+
+	public Class<?> resolveBeanClass(ClassLoader classLoader) throws ClassNotFoundException;
+
+	public Class<?> getBeanClass() throws IllegalStateException;
+
+	public boolean hasBeanClass();
+
 }

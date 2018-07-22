@@ -1,6 +1,7 @@
 package org.litespring.beans;
 
-import com.sun.corba.se.impl.io.TypeMismatchException;
+
+import org.litespring.TypeMismatchException;
 
 /**
  * [Class description.  The first sentence should be a meaningful summary of the class since it
@@ -15,7 +16,6 @@ import com.sun.corba.se.impl.io.TypeMismatchException;
  * @see {URL}
  * @see [Class name#method name]
  **/
-
 public interface TypeConverter {
 
 

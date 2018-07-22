@@ -46,8 +46,8 @@ public class ResourceTest {
 	@Test
 	public void testFileSystemResource() throws Exception {
 
-		Resource r = new FileSystemResource("src"+File.separator+"test"+File.separator+
-				"resources"+File.separator+"petstore-v1.xml");
+		Resource r = new FileSystemResource("src" + File.separator + "test" + File.separator +
+				"resources" + File.separator + "petstore-v1.xml");
 		InputStream is = null;
 		try {
 			is = r.getInputStream();

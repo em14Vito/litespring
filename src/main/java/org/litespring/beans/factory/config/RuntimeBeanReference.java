@@ -14,13 +14,13 @@ package org.litespring.beans.factory.config;
  * @see [Class name#method name]
  */
 public class RuntimeBeanReference {
-  private final String beanName;
+	private final String beanName;
 
-  public RuntimeBeanReference(String beanName) {
-    this.beanName = beanName;
-  }
+	public RuntimeBeanReference(String beanName) {
+		this.beanName = beanName;
+	}
 
-  public String getBeanName() {
-    return this.beanName;
-  }
+	public String getBeanName() {
+		return this.beanName;
+	}
 }

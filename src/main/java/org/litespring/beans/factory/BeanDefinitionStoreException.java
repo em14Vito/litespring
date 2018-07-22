@@ -17,22 +17,22 @@ import org.litespring.beans.BeansException;
  */
 public class BeanDefinitionStoreException extends BeansException {
 
-  private String beanName;
+	private String beanName;
 
-  public BeanDefinitionStoreException(String msg) {
-    super(msg);
-  }
+	public BeanDefinitionStoreException(String msg) {
+		super(msg);
+	}
 
-  public BeanDefinitionStoreException(String message, Throwable cause) {
-    super(message, cause);
-  }
+	public BeanDefinitionStoreException(String message, Throwable cause) {
+		super(message, cause);
+	}
 
-  public BeanDefinitionStoreException(String beanName, String message) {
-    super("Error creating bean with name " + beanName + ": " + message);
-    this.beanName = beanName;
-  }
+	public BeanDefinitionStoreException(String beanName, String message) {
+		super("Error creating bean with name " + beanName + ": " + message);
+		this.beanName = beanName;
+	}
 
-  public String getBeanName() {
-    return beanName;
-  }
+	public String getBeanName() {
+		return beanName;
+	}
 }

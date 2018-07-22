@@ -37,7 +37,7 @@ public class ConstructorResolverTest {
 
 		ConstructorResolver resolver = new ConstructorResolver(factory);
 
-		PetStoreService petStore = (PetStoreService)resolver.autowireConstructor(bd);
+		PetStoreService petStore = (PetStoreService) resolver.autowireConstructor(bd);
 
 		// 验证参数version 正确地通过此构造函数做了初始化
 		// PetStoreService(AccountDao accountDao, ItemDao itemDao,int version)

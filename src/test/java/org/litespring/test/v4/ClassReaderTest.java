@@ -43,7 +43,7 @@ public class ClassReaderTest {
 
 
 	@Test
-	public void testGetAnnonation() throws Exception{
+	public void testGetAnnonation() throws Exception {
 		ClassPathResource resource = new ClassPathResource("org/litespring/service/v4/PetStoreService.class");
 		ClassReader reader = new ClassReader(resource.getInputStream());
 
