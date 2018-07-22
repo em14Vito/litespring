@@ -9,7 +9,8 @@ import static java.lang.String.format;
 
 /**
  * <p>
- *
+ *  注释属性类:
+ *  用来描述 注解
  * </p>
  *
  * @author Denny

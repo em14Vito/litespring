@@ -51,7 +51,6 @@ public abstract class ClassUtils {
 	/**
 	 * The path separator character: '/'
 	 */
-//	private static final char PATH_SEPARATOR = '/';
 	private static final char PATH_SEPARATOR = File.separator.charAt(0);
 
 	/**

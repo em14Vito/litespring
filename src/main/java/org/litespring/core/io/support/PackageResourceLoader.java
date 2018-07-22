@@ -16,7 +16,8 @@ import java.util.Set;
 
 /**
  * <p>
- *
+ *  Package 加载 Utils类：
+ *  指定一个package 下，加载目录下所有的文件;
  * </p>
  *
  * @author Denny
@@ -85,18 +86,18 @@ public class PackageResourceLoader {
 			}
 			return Collections.emptySet();
 		}
-		/*String fullPattern = StringUtils.replace(rootDir.getAbsolutePath(), File.separator, "/");
-		if (!pattern.startsWith("/")) {
-			fullPattern += "/";
-		}
-		fullPattern = fullPattern + StringUtils.replace(pattern, File.separator, "/");
-		*/
+
 		Set<File> result = new LinkedHashSet<File>(8);
 		doRetrieveMatchingFiles(rootDir, result);
 		return result;
 	}
 
-
+	/**
+	 * 递归查询文件夹
+	 * @param dir
+	 * @param result
+	 * @throws IOException
+	 */
 	protected void doRetrieveMatchingFiles(File dir, Set<File> result) throws IOException {
 
 		File[] dirContents = dir.listFiles();

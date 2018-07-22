@@ -9,7 +9,8 @@ import java.util.Map;
 
 /**
  * <p>
- *
+ * 注释属性读取器：
+ * 通过 继承 ASM Hooks, 获得指定注解下=》 属性对应的 key-value (String - AnnotationAttributes)
  * </p>
  *
  * @author Denny

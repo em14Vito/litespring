@@ -6,7 +6,7 @@ import org.litespring.core.type.AnnotationMetadata;
 
 /**
  * <p>
- *
+ *     多态实现： 通过basePackage扫描的BeanDefinition;
  * </p>
  *
  * @author Denny

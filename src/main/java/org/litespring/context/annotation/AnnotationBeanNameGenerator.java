@@ -14,14 +14,15 @@ import java.util.Set;
 
 /**
  * <p>
+ *     为Bean 生成Name:
+ *     如果注解内未提供，则根据Class Nama 按照一定规则给与生成
  *
  * </p>
  *
  * @author Denny
  * @version 1.0.0 18/07/2018 11:45 PM
- * @see [String]
- * @see {URL}
- * @see [Class name#method name]
+ *
+ * @see java.beans.Introspector#decapitalize(String) {Bean Name生成规则}
  **/
 
 public class AnnotationBeanNameGenerator implements BeanNameGenerator {
@@ -35,19 +36,24 @@ public class AnnotationBeanNameGenerator implements BeanNameGenerator {
 				return beanName;
 			}
 		}
+		//未指定BeanName,自动生成BeanName
 		return buildDefaultBeanName(definition, registry);
 	}
 
 	/**
 	 * Derive a bean name from one of the annotations on the class.
 	 *
+	 * 查找对应的注解的Name( Field = value)
+	 *
 	 * @param annotatedDef the annotation-aware bean definition
 	 * @return the bean name, or {@code null} if none is found
 	 */
 	protected String determineBeanNameFromAnnotation(AnnotatedBeanDefinition annotatedDef) {
 		AnnotationMetadata amd = annotatedDef.getMetadata();
+		//
 		Set<String> types = amd.getAnnotationTypes();
 		String beanName = null;
+		//FIXME 感觉这段写的不太好; 没有遍历所有的属性;有种写死的感觉：
 		for (String type : types) {
 			AnnotationAttributes attributes = amd.getAnnotationAttributes(type);
 			if (attributes.get("value") != null) {
@@ -79,7 +85,13 @@ public class AnnotationBeanNameGenerator implements BeanNameGenerator {
 	/**
 	 * Derive a default bean name from the given bean definition.
 	 * <p>The default implementation simply builds a decapitalized version
-	 * of the short class name: e.g. "mypackage.MyJdbcDao" -> "myJdbcDao".
+	 * of the short class name:
+	 *
+	 * e.g.
+	 * 1: "mypackage.MyJdbcDao" -> "myJdbcDao".
+	 * 2:"URL" -> "URL"
+	 * 3:"Fool" -> "fool"
+	 *
 	 * <p>Note that inner classes will thus have names of the form
 	 * "outerClassName.InnerClassName", which because of the period in the
 	 * name may be an issue if you are autowiring by name.

@@ -7,6 +7,8 @@ import org.springframework.asm.SpringAsmInfo;
 
 /**
  * <p>
+ *     类 元数据 读取器：
+ *     通过ASM Hooks, 获得class的name, isInterface,isFinal ...
  *
  * </p>
  *

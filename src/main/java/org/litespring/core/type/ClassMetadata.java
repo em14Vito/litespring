@@ -2,7 +2,7 @@ package org.litespring.core.type;
 
 /**
  * <p>
- *
+ *  Class 的 元数据 接口：
  * </p>
  *
  * @author Denny

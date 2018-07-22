@@ -8,11 +8,9 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * [Class description. The first sentence should be a meaningful summary of the class since it will
- * be displayed as the class summary on the Javadoc package page.]
- *
- * <p>[Other notes, including guaranteed invariants, usage instructions and/or examples, reminders
- * about desired improvements, etc.]
+ * <p>
+ *     文件加载器
+ * </p>
  *
  * @author Denny
  * @version 1.0.0 19/06/2018 11:16 PM

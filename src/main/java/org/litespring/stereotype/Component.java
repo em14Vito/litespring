@@ -4,7 +4,7 @@ import java.lang.annotation.*;
 
 /**
  * <p>
- *
+ *     标注 bean 由 Spring 管理
  * </p>
  *
  * @author Denny

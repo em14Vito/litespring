@@ -19,7 +19,7 @@ import java.util.Set;
 
 /**
  * <p>
- *
+ *   扫描BasePackage 并转成BeanDefinition;
  * </p>
  *
  * @author Denny
@@ -59,7 +59,14 @@ public class ClassPathBeanDefinitionScanner {
 		return beanDefinitions;
 	}
 
-
+	/**
+	 * 1. 递归查询basePackage下所有的文件, 转成Resource[]
+	 * 2. 利用ASM扫描所有Resource的class,查找是否有属于Component注解;
+	 * 3. 将Component 注解的Class 转成 ScannedGenericBeanDefinition(继承BeanDefinition)
+	 *
+	 * @param basePackage  package(以逗号分隔)
+	 * @return
+	 */
 	public Set<BeanDefinition> findCandidateComponents(String basePackage) {
 		Set<BeanDefinition> candidates = new LinkedHashSet<BeanDefinition>();
 		try {
