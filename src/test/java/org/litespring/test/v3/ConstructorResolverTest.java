@@ -40,7 +40,7 @@ public class ConstructorResolverTest {
 		PetStoreService petStore = (PetStoreService) resolver.autowireConstructor(bd);
 
 		// 验证参数version 正确地通过此构造函数做了初始化
-		// PetStoreService(AccountDao accountDao, ItemDao itemDao,int version)
+		// PointcutTest(AccountDao accountDao, ItemDao itemDao,int version)
 		Assert.assertEquals(1, petStore.getVersion());
 
 		Assert.assertNotNull(petStore.getAccountDao());

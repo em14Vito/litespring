@@ -26,7 +26,7 @@ public class ClassReaderTest {
 
 	@Test
 	public void testGetClasMetaData() throws IOException {
-		ClassPathResource resource = new ClassPathResource("org/litespring/service/v4/PetStoreService.class");
+		ClassPathResource resource = new ClassPathResource("org/litespring/service/v4/PointcutTest.class");
 		ClassReader reader = new ClassReader(resource.getInputStream());
 
 		ClassMetadataReadingVisitor visitor = new ClassMetadataReadingVisitor();
@@ -36,7 +36,7 @@ public class ClassReaderTest {
 		Assert.assertFalse(visitor.isAbstract());
 		Assert.assertFalse(visitor.isInterface());
 		Assert.assertFalse(visitor.isFinal());
-		Assert.assertEquals("org.litespring.service.v4.PetStoreService", visitor.getClassName());
+		Assert.assertEquals("org.litespring.service.v4.PointcutTest", visitor.getClassName());
 		Assert.assertEquals("java.lang.Object", visitor.getSuperClassName());
 		Assert.assertEquals(0, visitor.getInterfaceNames().length);
 	}
@@ -44,7 +44,7 @@ public class ClassReaderTest {
 
 	@Test
 	public void testGetAnnonation() throws Exception {
-		ClassPathResource resource = new ClassPathResource("org/litespring/service/v4/PetStoreService.class");
+		ClassPathResource resource = new ClassPathResource("org/litespring/service/v4/PointcutTest.class");
 		ClassReader reader = new ClassReader(resource.getInputStream());
 
 		AnnotationMetadataReadingVisitor visitor = new AnnotationMetadataReadingVisitor();

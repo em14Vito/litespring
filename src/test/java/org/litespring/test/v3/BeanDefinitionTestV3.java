@@ -36,7 +36,7 @@ public class BeanDefinitionTestV3 {
 		reader.loadBeanDefinitions(resource);
 
 		BeanDefinition bd = factory.getBeanDefinition("petStore");
-		Assert.assertEquals("org.litespring.service.v3.PetStoreService", bd.getBeanClassName());
+		Assert.assertEquals("org.litespring.service.v3.PointcutTest", bd.getBeanClassName());
 
 		ConstructorArgument args = bd.getConstructorArgument();
 		List<ConstructorArgument.ValueHolder> valueHolders = args.getArgumentValues();

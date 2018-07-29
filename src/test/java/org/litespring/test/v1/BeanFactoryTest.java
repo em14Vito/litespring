@@ -52,7 +52,7 @@ public class BeanFactoryTest {
 
 		assertEquals(BeanDefinition.SCOPE_DEFAULT, bd.getScope());
 
-		assertEquals("org.litespring.service.v1.PetStoreService", bd.getBeanClassName());
+		assertEquals("org.litespring.service.v1.PointcutTest", bd.getBeanClassName());
 
 		PetStoreService petStore = (PetStoreService) factory.getBean("petStore");
 
